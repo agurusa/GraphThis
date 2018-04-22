@@ -1,10 +1,12 @@
-var dataset = [1, 2, 3];
+var dataset = [ 5, 10, 12, 20, 14, 3 ];
 
 
 d3.select("body").selectAll("div")
-    .data([1, 2, 3])
+    .data(dataset)
     .enter()
-    .append("p")
-    .text(function(d){
-    	return "I'm number" + d;
+    .append("div")
+    .attr("class", "bar")
+    .style("height", function(d) {
+        var barHeight = d * 5;
+        return barHeight + "px";
     });
