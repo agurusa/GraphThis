@@ -1,6 +1,15 @@
-var dataset = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
-                14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
-                24, 18, 25, 9, 3 ];
+var dataset = [
+                  [ 5,     20 ],
+                  [ 480,   90 ],
+                  [ 250,   50 ],
+                  [ 100,   33 ],
+                  [ 330,   95 ],
+                  [ 410,   12 ],
+                  [ 475,   44 ],
+                  [ 25,    67 ],
+                  [ 85,    21 ],
+                  [ 220,   88 ]
+              ];
 
 var w = 500;
 var h = 100;
@@ -11,26 +20,14 @@ var svg = d3.select("body")
 			.attr("width", w)
 			.attr("height" , h);
 
-// d3.select("body").selectAll("div")
-//     .data(dataset)
-//     .enter()
-//     .append("div")
-//     .attr("class", "bar")
-//     .style("height", function(d) {
-//         var barHeight = d * 5;
-//         return barHeight + "px";
-//     });
-
-svg.selectAll("rect")
+svg.selectAll("circle")
 	.data(dataset)
 	.enter()
-	.append("rect")
-	.attr("x", function(d,i){
-		return i * (w/dataset.length);
+	.append("circle")
+	.attr("cx", function(d,i){
+		return d[0];
 	})
-	.attr("y", function(d){
-		return h-d*3;
+	.attr("cy", function(d){
+		return d[1];
 	})
-	.attr("width", w/dataset.length - barPadding)
-	.attr("height", h)
-	.attr("margin-right", barPadding);
+	.attr("r", 2)
