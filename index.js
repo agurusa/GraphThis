@@ -20,14 +20,33 @@ var svg = d3.select("body")
 			.attr("width", w)
 			.attr("height" , h);
 
+
+var xScale = d3.scaleLinear()
+					.domain([0, 
+						d3.max(dataset, 
+							function(d){
+								return d[0];
+							})
+						])
+					.range([0, w]);
+
+var yScale = d3.scale.linear()
+					.domain([0,
+						d3.max(dataset, 
+							function(d){
+								return d[1];
+							})
+						])
+					.range([0,h]);
+
 svg.selectAll("circle")
 	.data(dataset)
 	.enter()
 	.append("circle")
-	.attr("cx", function(d,i){
-		return d[0];
+	.attr("cx", function(d){
+		return xScale(d[0]);
 	})
 	.attr("cy", function(d){
-		return d[1];
+		return yScale(d[1]);
 	})
 	.attr("r", 2)
